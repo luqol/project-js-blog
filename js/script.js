@@ -26,7 +26,6 @@
         for(const activeArticle of activeArtiles){
             activeArticle.classList.remove('active');
         }
-
         /* [Done] get 'href' attribute from the clicked link */
         const id = clickedElement.getAttribute('href');
         /* [Done] find the correct article using the selector (value of 'href' attribute) */
@@ -39,6 +38,8 @@
     for (const link of links){
          link.addEventListener('click', titleClickHandler);
     }
+
+    
 
 }
 
