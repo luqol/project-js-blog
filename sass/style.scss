@@ -34,6 +34,7 @@ body {
   text-transform: uppercase;
   font-family: $font-header;
   font-weight: 600;
+
   span {
     text-transform: none;
     font-weight: 400;
@@ -84,6 +85,7 @@ li a{
   list-style-type: none;
   margin: 0;
   padding: 0;
+
   .active {
     font-weight: bold;
   }
@@ -129,26 +131,29 @@ li a{
     opacity: 0;
     z-index: 0;
   }
+
   &.active{
-      .post-title {
-        position: relative;
-        opacity: 1;
-        transition: opacity 1s;
-        z-index: 1;
-      }
-      .post-content{
-        position: relative;
-        opacity: 1;
-        transition: opacity 3s;
-        z-index: 1;
-      }
-      .post-tags, .post-author{
-        position: relative;
-        opacity: 1;
-        transition: opacity 2s;
-        z-index: 1;
+    .post-title {
+      position: relative;
+      opacity: 1;
+      transition: opacity 1s;
+      z-index: 1;
     }
-  }   
+
+    .post-content{
+      position: relative;
+      opacity: 1;
+      transition: opacity 3s;
+      z-index: 1;
+    }
+
+    .post-tags, .post-author{
+      position: relative;
+      opacity: 1;
+      transition: opacity 2s;
+      z-index: 1;
+    }
+  }
 }
 
 .post-author {
@@ -157,14 +162,19 @@ li a{
 
 .post-tags {
   display: flex;
+
   p {
     margin: 0 10px 0 0;
+  }
+
+  li{
+    margin-right: 10px;
   }
 }
 
 @media (max-width: 770px){
-   .wrapper{
+  .wrapper{
     flex-direction: column;
-   }
+  }
 
 }
