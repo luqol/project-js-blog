@@ -41,6 +41,10 @@ body {
   }
 }
 
+li a{
+  text-decoration: none;
+}
+
 /* Layout */
 
 .wrapper {
@@ -156,4 +160,11 @@ body {
   p {
     margin: 0 10px 0 0;
   }
+}
+
+@media (max-width: 770px){
+   .wrapper{
+    flex-direction: column;
+   }
+
 }
