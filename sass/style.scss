@@ -101,11 +101,50 @@ body {
 
 /* Post */
 
-.post {
+/* .post {
   display: none;
   &.active {
     display: block;
   }
+} */
+/*.post {
+  position: absolute;
+  opacity: 0;
+  z-index: 0;
+  &.active{
+    position: relative;
+    opacity: 1;
+    transition: opacity 3s;
+    z-index: 1;
+  }
+} */
+
+.post{
+  .post-title, .post-content, .post-tags, .post-author{
+    position: absolute;
+    opacity: 0;
+    z-index: 0;
+  }
+  &.active{
+      .post-title {
+        position: relative;
+        opacity: 1;
+        transition: opacity 1s;
+        z-index: 1;
+      }
+      .post-content{
+        position: relative;
+        opacity: 1;
+        transition: opacity 3s;
+        z-index: 1;
+      }
+      .post-tags, .post-author{
+        position: relative;
+        opacity: 1;
+        transition: opacity 2s;
+        z-index: 1;
+    }
+  }   
 }
 
 .post-author {
