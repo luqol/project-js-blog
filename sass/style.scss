@@ -45,6 +45,10 @@ body {
 li a{
   text-decoration: none;
 }
+.post-author a{
+  text-decoration: none;
+  color: $color-dark;
+}
 
 /* Layout */
 
@@ -172,9 +176,16 @@ li a{
   }
 }
 
+.post[data-author~="Marion Berry"]{
+  color: red;
+}
+
+
 @media (max-width: 770px){
   .wrapper{
     flex-direction: column;
   }
 
 }
+
+
