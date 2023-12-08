@@ -5,6 +5,7 @@ function generateTitleLinks(customSelector = ''){
   titleList.innerHTML = '';
   /* [done]for each article */
   const articleList = document.querySelectorAll('.post'+customSelector);
+
   for (const article of articleList){
     /* [done]get the article id */
     const articleId = article.getAttribute('id');
@@ -52,6 +53,8 @@ function titleClickHandler (event){
   activeArticle.classList.add('active');
 }
 function generateTags(){
+  /* [NEW] create a new variable allTags with an empty array */
+  let allTags = [];
   /*[done] find all articles */
   const articleList = document.querySelectorAll('.post');
   /* [done] START LOOP: for every article: */
@@ -70,12 +73,22 @@ function generateTags(){
       linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
       /* add generated code to html variable */
       tagList.insertAdjacentHTML('beforeend', linkHTML);
+      /* [NEW] check if this link is NOT already in allTags */
+      if(allTags.indexOf(linkHTML) == -1){
+        /* [NEW] add generated code to allTags array */
+        allTags.push(linkHTML);
+      }
     /* [done] END LOOP: for each tag */
     }
     /* [done in loop]insert HTML of all the links into the tags wrapper */
 
   /* [done] END LOOP: for every article: */
   }
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector('.tags.list');
+
+  /* [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
 }
 function tagClickHandler(event){
   /* [done]prevent default action for this event */
