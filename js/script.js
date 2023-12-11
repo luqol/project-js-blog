@@ -153,7 +153,7 @@ function tagClickHandler(event){
 }
 function addClickListenersToTags(){
   /* [done]find all links to tags */
-  const links = document.querySelectorAll('.post-tags .list a');
+  const links = document.querySelectorAll('.list a[href^="#tag-"]');
   /* [done]START LOOP: for each link */
   for(const link of links){
     /* [done] add tagClickHandler as event listener for that link */
