@@ -52,9 +52,29 @@ function titleClickHandler (event){
   /* [Done] add class 'active' to the correct article */
   activeArticle.classList.add('active');
 }
+function calculateTagsParams(tags){
+  let params = {
+    max: '',
+    min: ''
+  };
+  for(const tag in tags){
+    params.max = Math.max(params.max, tags[tag]);
+    if(params.min == ''){
+      params.min = tags[tag];
+    }
+    params.min = Math.min(params.min, tags[tag]);
+  }
+  return params;
+}
+function calculateTagClass(count, params){
+
+  const classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * 4 + 1 );
+
+  return 'tag-size-'+classNumber ;
+}
 function generateTags(){
-  /* [NEW] create a new variable allTags with an empty array */
-  let allTags = [];
+  /* [NEW] create a new variable allTags with an empty object */
+  let allTags = {};
   /*[done] find all articles */
   const articleList = document.querySelectorAll('.post');
   /* [done] START LOOP: for every article: */
@@ -74,9 +94,11 @@ function generateTags(){
       /* add generated code to html variable */
       tagList.insertAdjacentHTML('beforeend', linkHTML);
       /* [NEW] check if this link is NOT already in allTags */
-      if(allTags.indexOf(linkHTML) == -1){
-        /* [NEW] add generated code to allTags array */
-        allTags.push(linkHTML);
+      if(!allTags[tag]) {
+        /* [NEW] add tag to allTags object */
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
       }
     /* [done] END LOOP: for each tag */
     }
@@ -87,8 +109,19 @@ function generateTags(){
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector('.tags.list');
 
-  /* [NEW] add html from allTags to tagList */
-  tagList.innerHTML = allTags.join(' ');
+  /* [NEW] create variable for all links HTML code */
+  const tagsParams = calculateTagsParams(allTags);
+  let allTagsHTML = '';
+
+  /* [NEW] START LOOP: for each tag in allTags: */
+  for(let tag in allTags){
+    /* [NEW] generate code of a link and add it to allTagsHTML */
+    allTagsHTML += '<li><a href="#tag-' + tag + '" class="' + calculateTagClass(allTags[tag], tagsParams) + '"> ' + tag+ ' </a></li>';
+  }
+  /* [NEW] END LOOP: for each tag in allTags: */
+
+  /*[NEW] add HTML from allTagsHTML to tagList */
+  tagList.innerHTML = allTagsHTML;
 }
 function tagClickHandler(event){
   /* [done]prevent default action for this event */

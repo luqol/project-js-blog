@@ -111,24 +111,6 @@ li a{
 
 /* Post */
 
-/* .post {
-  display: none;
-  &.active {
-    display: block;
-  }
-} */
-/*.post {
-  position: absolute;
-  opacity: 0;
-  z-index: 0;
-  &.active{
-    position: relative;
-    opacity: 1;
-    transition: opacity 3s;
-    z-index: 1;
-  }
-} */
-
 .post{
   .post-title, .post-content, .post-tags, .post-author{
     position: absolute;
@@ -180,6 +162,27 @@ li a{
   color: red;
 }
 
+/* Sidebar tags */
+.tag-size-1{
+  font-size: small;
+}
+.tag-size-2{
+  font-size: medium;
+}
+.tag-size-3{
+  font-size: large;
+}
+.tag-size-4{
+  font-size: x-large;
+}
+.tag-size-5{
+  font-size: xx-large;
+}
+.sidebar .tags li{
+  display: inline-block;
+  padding-right: 10px;
+
+}
 
 @media (max-width: 770px){
   .wrapper{
