@@ -162,6 +162,8 @@ function addClickListenersToTags(){
   }
 }
 function generateAuthors(){
+  /* [NEW] create a new variable allAuthors with an empty object */
+  let allAuthors ={};
   /*[done] find all articles */
   const articleList = document.querySelectorAll('.post');
   /* [done] START LOOP: for every article: */
@@ -176,8 +178,30 @@ function generateAuthors(){
     linkHTML = '<a href="#author-' + dataAutor + '">by '+ dataAutor + '</a>';
     /* [done in loop]insert HTML of all the links into the authors wrapper */
     author.insertAdjacentHTML('beforeend', linkHTML);
-  /* [done] END LOOP: for every article: */
+    /* [NEW] check if this link is NOT already in allAuthors */
+    if(!allAuthors[dataAutor]) {
+      /* [NEW] add tag to allAuthors object */
+      allAuthors[dataAutor] = 1;
+    } else {
+      allAuthors[dataAutor]++;
+    }
+    /* [done] END LOOP: for every article: */
   }
+  /* [NEW] find list of authors in right column */
+  const authorsList = document.querySelector('.authors.list');
+
+  /* [NEW] create variable for all links HTML code */
+  let allAuthorsHTML = '';
+
+  /* [NEW] START LOOP: for each authors in allAuthors: */
+  for(let author in allAuthors){
+    /* [NEW] generate code of a link and add it to allAuthorsHTML */
+    allAuthorsHTML += '<li><a href="#author-' + author + '"> ' + author + '</a><span> ('+ allAuthors[author] +')</span></li> ';
+  }
+  /* [NEW] END LOOP: for each tag in allAuthors: */
+
+  /*[NEW] add HTML from allTagsHTML to authorsList */
+  authorsList.innerHTML = allAuthorsHTML;
 }
 function authorClickHandler(event){
   /* [done]prevent default action for this event */
@@ -209,7 +233,7 @@ function authorClickHandler(event){
 }
 function addClickListenerstoAuthors(){
   /* [done]find all links to authors */
-  const links = document.querySelectorAll('.post-author a');
+  const links = document.querySelectorAll('a[href^="#author-"]');
   /* [done]START LOOP: for each link */
   for(const link of links){
     /* [done] add tagClickHandler as event listener for that link */
