@@ -27,7 +27,6 @@ const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
   tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
   authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
-  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
   tagCloudLink: Handlebars.compile(document.querySelector('#template-tagCloudLink').innerHTML),
   authorSidebar: Handlebars.compile(document.querySelector('#template-authorSidebar').innerHTML)
 };
@@ -128,7 +127,7 @@ function generateTags(){
       //linkHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
       /*[template] */
       const linkHTMLData = {id: tag, title: tag};
-      const linkHTML = templates.tagLink(linkHTMLData);
+      linkHTML = templates.tagLink(linkHTMLData);
       /* add generated code to html variable */
       tagList.insertAdjacentHTML('beforeend', linkHTML);
       /* [NEW] check if this link is NOT already in allTags */
@@ -239,7 +238,7 @@ function generateAuthors(){
   const authorsList = document.querySelector('.authors.list');
 
   /* [NEW] create variable for all links HTML code */
-  let allAuthorsHTML = '';
+  //let allAuthorsHTML = '';
   let allAuthrsData = {authors:[] };
 
   /* [NEW] START LOOP: for each authors in allAuthors: */
