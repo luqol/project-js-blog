@@ -115,7 +115,7 @@ li a{
   .post-title, .post-content, .post-tags, .post-author{
     position: absolute;
     opacity: 0;
-    z-index: 0;
+    z-index: -1;
   }
 
   &.active{
