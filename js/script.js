@@ -4,10 +4,28 @@ const opts = {
     count: 5,
     classPrefix: 'tag-size-',
   },
-}
+};
+const select = {
+  all: {
+    articles: '.post',
+    linksTo: {
+      tags: 'a[href^="#tag-"]',
+      authors: 'a[href^="#author-"]',
+    },
+  },
+  article: {
+    tags: '.post-tags .list',
+    author: '.post-author',
+  },
+  listOf: {
+    titles: '.titles',
+    tags: '.tags.list',
+    authors: '.authors.list',
+  },
+};
 function generateTitleLinks(customSelector = ''){
   /* [done]remove contents of titleList */
-  const titleList = document.querySelector('.titles');
+  const titleList = document.querySelector(select.listOf.titles);
   titleList.innerHTML = '';
   /* [done]for each article */
   const articleList = document.querySelectorAll('.post'+customSelector);
@@ -147,7 +165,7 @@ function tagClickHandler(event){
   /* [done] END LOOP: for each active tag link */
   }
   /* [done] find all tag links with "href" attribute equal to the "href" constant */
-  const tagList = document.querySelectorAll('a[href="' + href + '"]')
+  const tagList = document.querySelectorAll('a[href="' + href + '"]');
   /* [done] START LOOP: for each found tag link */
   for(const link of tagList){
     /* [done] add class active */
@@ -159,7 +177,7 @@ function tagClickHandler(event){
 }
 function addClickListenersToTags(){
   /* [done]find all links to tags */
-  const links = document.querySelectorAll('.list a[href^="#tag-"]');
+  const links = document.querySelectorAll('.list '+ select.all.linksTo.tags);
   /* [done]START LOOP: for each link */
   for(const link of links){
     /* [done] add tagClickHandler as event listener for that link */
@@ -239,7 +257,7 @@ function authorClickHandler(event){
 }
 function addClickListenerstoAuthors(){
   /* [done]find all links to authors */
-  const links = document.querySelectorAll('a[href^="#author-"]');
+  const links = document.querySelectorAll(select.all.linksTo.authors);
   /* [done]START LOOP: for each link */
   for(const link of links){
     /* [done] add tagClickHandler as event listener for that link */
