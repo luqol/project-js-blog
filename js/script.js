@@ -1,4 +1,10 @@
 'use strict';
+const opts = {
+  tagSizes:{
+    count: 5,
+    classPrefix: 'tag-size-',
+  },
+}
 function generateTitleLinks(customSelector = ''){
   /* [done]remove contents of titleList */
   const titleList = document.querySelector('.titles');
@@ -68,9 +74,9 @@ function calculateTagsParams(tags){
 }
 function calculateTagClass(count, params){
 
-  const classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * 4 + 1 );
+  const classNumber = Math.floor( ( (count - params.min) / (params.max - params.min) ) * (opts.tagSizes.count-1) + 1 );
 
-  return 'tag-size-'+classNumber ;
+  return opts.tagSizes.classPrefix+classNumber ;
 }
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
